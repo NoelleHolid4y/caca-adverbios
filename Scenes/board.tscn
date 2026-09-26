@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqja8ty3apf5p"]
+
+[ext_resource type="Script" uid="uid://c7o6ra28n5cpw" path="res://Scripts/letter_grid.gd" id="1_tnbny"]
+
+[node name="Board" type="Node2D"]
+
+[node name="LetterGrid" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_tnbny")
