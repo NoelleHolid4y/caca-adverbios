@@ -8,6 +8,9 @@ var ROWS: int = 4
 var num_letters: int = COLS * ROWS
 
 var tiles: Array[Node] = []
+var selected_tiles: Array[Node] = []
+
+signal word_updated(word: String)
 
 func _ready() -> void:
 	LetterGrid.columns = COLS
@@ -21,11 +24,26 @@ func generate_grid():
 		tile.name = "Tile%d" % i
 		LetterGrid.add_child(tile)
 		tiles.append(tile)
+		tile.letter_pressed.connect(_on_letter_pressed)
 
 func clear_grid():
 	for tile in tiles:
 		tile.queue_free()
 	tiles.clear()
+
+func _on_letter_pressed(tile: Button):
+	selected_tiles.append(tile)
+	word_updated.emit(get_current_word())
+
+func get_current_word():
+	var word: String = ""
+	for tile in selected_tiles:
+		word += tile.current_letter
+	return word
+
+func clear_selection():
+	selected_tiles.clear()
+	word_updated.emit("")
 
 func debug_grid():
 	print("Current tiles:")

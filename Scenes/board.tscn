@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqja8ty3apf5p"]
+[gd_scene load_steps=3 format=3 uid="uid://bqja8ty3apf5p"]
 
+[ext_resource type="Script" uid="uid://c1wdjf3rx5275" path="res://Scenes/game.gd" id="1_2wvcj"]
 [ext_resource type="Script" uid="uid://c7o6ra28n5cpw" path="res://Scripts/letter_grid.gd" id="1_tnbny"]
 
 [node name="Board" type="Node2D"]
@@ -9,9 +10,25 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_2wvcj")
 
 [node name="LetterGrid" type="GridContainer" parent="UIControl"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_tnbny")
+
+[node name="ResetWord" type="Button" parent="UIControl"]
+layout_mode = 0
+offset_left = 855.0
+offset_top = 25.0
+offset_right = 1027.0
+offset_bottom = 107.0
+text = "Reset"
+
+[node name="Word" type="Label" parent="UIControl"]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 24.0
+offset_right = 754.0
+offset_bottom = 118.0
