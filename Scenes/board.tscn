@@ -4,7 +4,14 @@
 
 [node name="Board" type="Node2D"]
 
-[node name="LetterGrid" type="GridContainer" parent="."]
+[node name="UIControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LetterGrid" type="GridContainer" parent="UIControl"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_tnbny")
