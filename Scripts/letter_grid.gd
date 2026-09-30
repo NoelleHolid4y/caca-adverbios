@@ -32,8 +32,12 @@ func clear_grid():
 	tiles.clear()
 
 func _on_letter_pressed(tile: Button):
-	selected_tiles.append(tile)
-	word_updated.emit(get_current_word())
+	if tile.button_pressed:
+		selected_tiles.append(tile)
+		word_updated.emit(get_current_word())
+	elif tile in selected_tiles:
+		selected_tiles.erase(tile)
+		word_updated.emit(get_current_word())
 
 func get_current_word():
 	var word: String = ""
@@ -42,8 +46,11 @@ func get_current_word():
 	return word
 
 func clear_selection():
+	for tile in selected_tiles:
+		tile.button_pressed = false
 	selected_tiles.clear()
 	word_updated.emit("")
+	print("Cleared selection!")
 
 func debug_grid():
 	print("Current tiles:")

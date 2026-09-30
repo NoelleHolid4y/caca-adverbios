@@ -5,6 +5,7 @@
 [node name="LetterTile" type="Button"]
 offset_right = 8.0
 offset_bottom = 8.0
+toggle_mode = true
 script = ExtResource("1_av38n")
 
 [node name="debug_rand" type="Button" parent="."]
