@@ -3,22 +3,20 @@
 [ext_resource type="Script" uid="uid://c1wdjf3rx5275" path="res://Scripts/game.gd" id="1_2wvcj"]
 [ext_resource type="Script" uid="uid://c7o6ra28n5cpw" path="res://Scripts/letter_grid.gd" id="1_tnbny"]
 
-[node name="Board" type="Node2D"]
-
-[node name="UIControl" type="Control" parent="."]
+[node name="Board" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_2wvcj")
 
-[node name="LetterGrid" type="GridContainer" parent="UIControl"]
+[node name="LetterGrid" type="GridContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_tnbny")
 
-[node name="ResetWord" type="Button" parent="UIControl"]
+[node name="ResetWord" type="Button" parent="."]
 layout_mode = 0
 offset_left = 855.0
 offset_top = 25.0
@@ -26,7 +24,7 @@ offset_right = 1027.0
 offset_bottom = 107.0
 text = "Reset"
 
-[node name="Word" type="Label" parent="UIControl"]
+[node name="Word" type="Label" parent="."]
 layout_mode = 0
 offset_left = 592.0
 offset_top = 24.0
