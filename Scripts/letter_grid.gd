@@ -50,7 +50,7 @@ func clear_selection():
 		tile.button_pressed = false
 	selected_tiles.clear()
 	word_updated.emit("")
-	print("Cleared selection!")
+
 
 func debug_grid():
 	print("Current tiles:")
