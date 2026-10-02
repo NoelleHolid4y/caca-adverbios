@@ -23,7 +23,7 @@ func is_correct(word: String):
 
 static func _normalize(word: String):
 	const TRANSLATABLE := "ÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ"
-	const TRANSLATED := "AAAAAEEEEIIIIOOOOOUUUUÇ"
+	const TRANSLATED := "AAAAAEEEEIIIIOOOOOUUUUC"
 	var result := word.to_upper()
 	for i in TRANSLATABLE.length():
 		result = result.replace(TRANSLATABLE[i], TRANSLATED[i])
