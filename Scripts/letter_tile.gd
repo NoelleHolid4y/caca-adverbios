@@ -23,7 +23,6 @@ func reroll_letter():
 	return letter
 
 func _on_tile_pressed():
-	print("Pressed tile of letter %c" % current_letter)
 	letter_pressed.emit(self)
 
 func _on_debug_rand_pressed() -> void:
