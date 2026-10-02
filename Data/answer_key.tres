@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="SentenceBank" load_steps=6 format=3 uid="uid://bvq2egfb8doxn"]
+
+[ext_resource type="Script" uid="uid://c4jmdyg53dvoj" path="res://Scripts/sentence_bank.gd" id="1_rx1ym"]
+[ext_resource type="Script" uid="uid://bx3hjmvseo76o" path="res://Scripts/sentence_data.gd" id="2_rbp7i"]
+
+[sub_resource type="Resource" id="Resource_rx1ym"]
+script = ExtResource("2_rbp7i")
+sentence = "Não fui a aula ______ estava doente."
+answers = Array[String](["porque", "pois", "já que"])
+metadata/_custom_type_script = "uid://bx3hjmvseo76o"
+
+[sub_resource type="Resource" id="Resource_rbp7i"]
+script = ExtResource("2_rbp7i")
+sentence = "Ela cantou ____ uma profissional canta."
+answers = Array[String](["como", "tal qual", "assim como"])
+classification = 4
+metadata/_custom_type_script = "uid://bx3hjmvseo76o"
+
+[sub_resource type="Resource" id="Resource_r2jo7"]
+script = ExtResource("2_rbp7i")
+sentence = "__ você ver uma formiga, corra!"
+answers = Array[String](["se", "caso", "desde que"])
+classification = 2
+metadata/_custom_type_script = "uid://bx3hjmvseo76o"
+
+[resource]
+script = ExtResource("1_rx1ym")
+sentences = Array[ExtResource("2_rbp7i")]([SubResource("Resource_rx1ym"), SubResource("Resource_rbp7i"), SubResource("Resource_r2jo7")])
+metadata/_custom_type_script = "uid://c4jmdyg53dvoj"
