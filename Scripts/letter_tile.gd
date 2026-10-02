@@ -25,5 +25,3 @@ func reroll_letter():
 func _on_tile_pressed():
 	letter_pressed.emit(self)
 
-func _on_debug_rand_pressed() -> void:
-	print(reroll_letter())

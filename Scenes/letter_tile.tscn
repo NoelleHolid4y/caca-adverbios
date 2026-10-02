@@ -7,13 +7,3 @@ offset_right = 8.0
 offset_bottom = 8.0
 toggle_mode = true
 script = ExtResource("1_av38n")
-
-[node name="debug_rand" type="Button" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 29.0
-offset_right = 37.0
-offset_bottom = 8.0
-text = "RANDOMIZE"
-
-[connection signal="pressed" from="debug_rand" to="." method="_on_debug_rand_pressed"]
