@@ -62,3 +62,8 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Reset"
+
+[node name="Submit" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Submit"
