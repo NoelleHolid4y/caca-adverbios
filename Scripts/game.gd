@@ -1,8 +1,9 @@
 extends Control
 
-@onready var LetterGrid: GridContainer = $LetterGrid
-@onready var WordLabel: Label = $Word 
-@onready var Reset: Button =  $ResetWord
+@onready var LetterGrid: GridContainer = %LetterGrid
+@onready var WordLabel: Label = %PlayerWord
+@onready var Sentence: Label = %Sentence
+@onready var Reset: Button = %ResetWord
 @onready var bank: SentenceBank = preload("res://Data/answer_key.tres")
 @onready var current_sentence: SentenceData
 
@@ -13,6 +14,7 @@ func _ready() -> void:
 
 func start_round(): #TODO: handle difficulty scaling 
 	current_sentence = bank.get_random_sentence()
+	Sentence.text = current_sentence.sentence
 	LetterGrid.generate_grid(current_sentence.get_main_answer())
 
 func _on_word_updated(word: String):
