@@ -5,6 +5,7 @@ extends Control
 @onready var Sentence: Label = %Sentence
 @onready var Reset: Button = %ResetWord
 @onready var Submit: Button = %Submit
+@onready var SpaceButton: Button = %Space
 @onready var bank: SentenceBank = preload("res://Data/answer_key.tres")
 @onready var current_sentence: SentenceData
 
@@ -12,6 +13,7 @@ func _ready() -> void:
 	LetterGrid.word_updated.connect(_on_word_updated)
 	Reset.pressed.connect(_on_reset_pressed)
 	Submit.pressed.connect(_on_submit_pressed)
+	SpaceButton.pressed.connect(LetterGrid.add_space)
 	start_round()
 
 func start_round(): #TODO: handle difficulty scaling 
@@ -26,7 +28,7 @@ func _on_reset_pressed():
 	LetterGrid.clear_selection()
 
 func _on_submit_pressed() -> void:
-	if current_sentence.is_correct(LetterGrid.get_current_word()):
+	if current_sentence.is_correct(LetterGrid.get_current_word_clean()):
 		print("Correct!")
 		start_round()
 	else:

@@ -17,7 +17,7 @@ var ROWS: int = 4
 var num_letters: int = COLS * ROWS
 
 var tiles: Array[Node] = []
-var selected_tiles: Array[Node] = []
+var selected: Array = []
 
 signal word_updated(word: String)
 
@@ -58,22 +58,34 @@ func clear_grid() -> void:
 
 func _on_letter_pressed(tile: Button):
 	if tile.button_pressed:
-		selected_tiles.append(tile)
-		word_updated.emit(get_current_word())
-	elif tile in selected_tiles:
-		selected_tiles.erase(tile)
-		word_updated.emit(get_current_word())
+		selected.append(tile)
+	elif tile in selected:
+		selected.erase(tile)
+	_emit_word()
 
-func get_current_word():
+func add_space() -> void:
+	if selected.size() == 0 or selected.front() is String or selected.back() is String:
+		return
+	selected.append(" ")
+	_emit_word()
+
+func get_current_word() -> String: # for visuals
 	var word: String = ""
-	for tile in selected_tiles:
-		word += tile.current_letter
+	for entry in selected:
+		word += entry if entry is String else entry.current_letter
+	return word
+
+func get_current_word_clean() -> String: #for validation
+	var word := get_current_word().strip_edges()
+	while "  " in word:
+		word = word.replace("  ", " ")
 	return word
 
 func clear_selection():
-	for tile in selected_tiles:
-		tile.button_pressed = false
-	selected_tiles.clear()
+	for entry in selected:
+		if entry is Button:
+			entry.button_pressed = false
+	selected.clear()
 	word_updated.emit("")
 
 func _emit_word() -> void:
