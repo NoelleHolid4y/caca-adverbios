@@ -1,0 +1,122 @@
+[
+  {
+    "sentence": "Não fui à aula ______ estava doente.",
+    "answers": ["porque", "pois", "já que"],
+    "classification": "CAUSAL",
+    "difficulty": 1
+  },
+  {
+    "sentence": "Ela cantou ____ uma profissional canta.",
+    "answers": ["como", "tal qual", "assim como"],
+    "classification": "COMPARATIVA",
+    "difficulty": 1
+  },
+  {
+    "sentence": "__ você ver uma formiga, corra!",
+    "answers": ["se", "caso", "desde que"],
+    "classification": "CONDICIONAL",
+    "difficulty": 1
+  },
+  {
+    "sentence": "Não lhe disse nada ______ não queria lhe preocupar",
+    "answers": ["porque", "pois", "já que"],
+    "classification": "CAUSAL",
+    "difficulty": 1
+  },
+  {
+    "sentence": "____ você estiver aqui no horário certo, iremos ao show",
+    "answers": ["caso", "se", "desde que"],
+    "classification": "CONDICIONAL",
+    "difficulty": 2
+  },
+  {
+    "sentence": "_____ me dei conta, já tinha feito tudo o que eu queria",
+    "answers": ["quando", "assim que", "antes que", "enquanto", "depois que"],
+    "classification": "TEMPORAL",
+    "difficulty": 2
+  },
+  {
+    "sentence": "Ela fez de tudo ________ pudesse lhe ver",
+    "answers": ["para que", "a fim de que"],
+    "classification": "FINAL",
+    "difficulty": 3
+  },
+  {
+    "sentence": "______ estivesse cansado, ele continuou estudando",
+    "answers": ["embora", "mesmo que", "por mais que", "ainda que"],
+    "classification": "CONCESSIVA",
+    "difficulty": 4
+  },
+  {
+    "sentence": "Dalia corre ____ uma atleta corre",
+    "answers": ["como", "tal qual", "assim como"],
+    "classification": "COMPARATIVA",
+    "difficulty": 1
+  },
+  {
+    "sentence": "_______ assistia à peça de teatro, João não parava de pensar nos resultados da prova",
+    "answers": ["enquanto", "quando", "sempre que"],
+    "classification": "TEMPORAL",
+    "difficulty": 2
+  },
+  {
+    "sentence": "____ estiverem entediados, venham aqui em casa",
+    "answers": ["caso", "se", "desde que"],
+    "classification": "CONDICIONAL",
+    "difficulty": 2
+  },
+  {
+    "sentence": "Fiz tudo o que pretendia, _____ estando doente",
+    "answers": ["mesmo", "ainda", "embora"],
+    "classification": "CONCESSIVA",
+    "difficulty": 2
+  },
+  {
+    "sentence": "________ as demandas chegavam, distribuía-as aos funcionários",
+    "answers": ["à medida que", "à proporção que", "ao passo que"],
+    "classification": "PROPORCIONAL",
+    "difficulty": 3
+  },
+  {
+    "sentence": "Ele não achou graça nenhuma, ____ eu falei \"six seven\" em um momento importante",
+    "answers": ["porque", "já que", "visto que", "uma vez que"],
+    "classification": "CAUSAL",
+    "difficulty": 2
+  },
+  {
+    "sentence": "Estudar com um amigo é mais produtivo _____ estudar sozinho",
+    "answers": ["do que", "que"],
+    "classification": "COMPARATIVA",
+    "difficulty": 1
+  },
+  {
+    "sentence": "Ela correu muito ________ chegar a tempo",
+    "answers": ["a fim de", "para", "de modo a"],
+    "classification": "FINAL",
+    "difficulty": 4
+  },
+  {
+    "sentence": "________ me dei conta, já estava na hora de sairmos",
+    "answers": ["assim que", "quando", "logo que"],
+    "classification": "TEMPORAL",
+    "difficulty": 3
+  },
+  {
+    "sentence": "Ele irá ao festival _________ cumpra seus deveres",
+    "answers": ["contanto que", "desde que", "caso"],
+    "classification": "CONDICIONAL",
+    "difficulty": 4
+  },
+  {
+    "sentence": "______ sejam pequenas, as formigas conseguem carregar objetos pesados",
+    "answers": ["embora", "mesmo que", "ainda que", "por mais que"],
+    "classification": "CONCESSIVA",
+    "difficulty": 3
+  },
+  {
+    "sentence": "____ estava chovendo muito, não fomos ao parque",
+    "answers": ["como", "já que", "visto que", "uma vez que"],
+    "classification": "CAUSAL",
+    "difficulty": 1
+  }
+]
