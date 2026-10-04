@@ -42,7 +42,8 @@ func _build_letters(answer: String) -> Array[String]:
 	var normd_answer = SentenceData._normalize(answer)
 	assert(normd_answer.length() <= num_letters, "Answer doesn't fit grid")
 	for c in normd_answer:
-		letters.append(c)
+		if not c == " ":
+			letters.append(c)
 	var keys := WEIGHTED_LETTERS.keys()
 	var weights := PackedFloat32Array(WEIGHTED_LETTERS.values())
 	while letters.size() < num_letters:
