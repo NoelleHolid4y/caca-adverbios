@@ -76,7 +76,6 @@ func clear_selection():
 	selected_tiles.clear()
 	word_updated.emit("")
 
-
 func debug_grid():
 	print("Current tiles:")
 	for tile in tiles:
