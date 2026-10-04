@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SentenceBank" load_steps=6 format=3 uid="uid://bvq2egfb8doxn"]
+[gd_resource type="Resource" script_class="SentenceBank" load_steps=12 format=3 uid="uid://bvq2egfb8doxn"]
 
 [ext_resource type="Script" uid="uid://c4jmdyg53dvoj" path="res://Scripts/sentence_bank.gd" id="1_rx1ym"]
 [ext_resource type="Script" uid="uid://bx3hjmvseo76o" path="res://Scripts/sentence_data.gd" id="2_rbp7i"]
@@ -23,7 +23,52 @@ answers = Array[String](["se", "caso", "desde que"])
 classification = 2
 metadata/_custom_type_script = "uid://bx3hjmvseo76o"
 
+[sub_resource type="Resource" id="Resource_7nhb1"]
+script = ExtResource("2_rbp7i")
+sentence = "Não lhe disse nada ______ não queria lhe preocupar"
+answers = Array[String](["porque", "pois", "ja que"])
+metadata/_custom_type_script = "uid://bx3hjmvseo76o"
+
+[sub_resource type="Resource" id="Resource_6s7us"]
+script = ExtResource("2_rbp7i")
+sentence = "____ você estiver aqui no horário certo, iremos ao show"
+answers = Array[String](["caso", "se", "desde que"])
+classification = 2
+difficulty = 2
+metadata/_custom_type_script = "uid://bx3hjmvseo76o"
+
+[sub_resource type="Resource" id="Resource_trlxy"]
+script = ExtResource("2_rbp7i")
+sentence = "_____ me dei conta, já tinha feito tudo o que eu queria"
+answers = Array[String](["quando", "assim que", "antes que", "enquanto", "depois que"])
+classification = 8
+difficulty = 2
+metadata/_custom_type_script = "uid://bx3hjmvseo76o"
+
+[sub_resource type="Resource" id="Resource_m3s6n"]
+script = ExtResource("2_rbp7i")
+sentence = "Ela fez de tudo ________ pudesse lhe ver"
+answers = Array[String](["para que", "a fim de que"])
+classification = 6
+difficulty = 3
+metadata/_custom_type_script = "uid://bx3hjmvseo76o"
+
+[sub_resource type="Resource" id="Resource_tdxoy"]
+script = ExtResource("2_rbp7i")
+sentence = "______ estivesse cansado, ele continuou estudando"
+answers = Array[String](["embora", "mesmo que", "por mais que", "ainda que"])
+classification = 1
+difficulty = 4
+metadata/_custom_type_script = "uid://bx3hjmvseo76o"
+
+[sub_resource type="Resource" id="Resource_cxyy0"]
+script = ExtResource("2_rbp7i")
+sentence = "Dalia corre ____ uma atleta corre"
+answers = Array[String](["como", "tal qual", "assim como"])
+classification = 4
+metadata/_custom_type_script = "uid://bx3hjmvseo76o"
+
 [resource]
 script = ExtResource("1_rx1ym")
-sentences = Array[ExtResource("2_rbp7i")]([SubResource("Resource_rx1ym"), SubResource("Resource_rbp7i"), SubResource("Resource_r2jo7")])
+sentences = Array[ExtResource("2_rbp7i")]([SubResource("Resource_rx1ym"), SubResource("Resource_rbp7i"), SubResource("Resource_r2jo7"), SubResource("Resource_7nhb1"), SubResource("Resource_6s7us"), SubResource("Resource_trlxy"), SubResource("Resource_m3s6n"), SubResource("Resource_tdxoy"), SubResource("Resource_cxyy0")])
 metadata/_custom_type_script = "uid://c4jmdyg53dvoj"
