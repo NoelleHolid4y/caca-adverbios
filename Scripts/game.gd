@@ -44,6 +44,7 @@ func _set_state(new_state: GameState) -> void:
 	state = new_state
 	for s in panels:
 		panels[s].visible = (s == state)
+	_focus_for_state(state)
 
 # Round logic
 func start_round(): #TODO: handle difficulty scaling 
@@ -104,6 +105,15 @@ func _build_classify_buttons() -> void:
 		b.text = key.capitalize()
 		b.pressed.connect(_on_classification_chosen.bind(SentenceData.ClauseType[key]))
 		ClassifyButtons.add_child(b)
+
+func _focus_for_state(s: GameState):
+	match s:
+		GameState.ANSWERING:
+			LetterGrid.focus_first_tile()
+		GameState.CLASSIFYING:
+			ClassifyButtons.get_child(0).grab_focus()
+		GameState.FEEDBACK:
+			NextButton.grab_focus()
 
 func _denormalize_answer(word: String) -> String:
 	var n := SentenceData._normalize(word)

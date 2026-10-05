@@ -88,6 +88,10 @@ func clear_selection():
 	selected.clear()
 	word_updated.emit("")
 
+func focus_first_tile() -> void:
+	if not tiles.is_empty():
+		tiles[0].grab_focus()
+
 func _emit_word() -> void:
 	word_updated.emit(get_current_word())
 
