@@ -39,10 +39,9 @@ func generate_grid(answer: String) -> void:
 
 func _build_letters(answer: String) -> Array[String]:
 	var letters: Array[String] = []
-	var normd_answer = SentenceData._normalize(answer)
+	var normd_answer = SentenceData._normalize(answer).replace(" ", "")
 	assert(normd_answer.length() <= num_letters, "Answer doesn't fit grid")
 	for c in normd_answer:
-		if not c == " ":
 			letters.append(c)
 	var keys := WEIGHTED_LETTERS.keys()
 	var weights := PackedFloat32Array(WEIGHTED_LETTERS.values())
