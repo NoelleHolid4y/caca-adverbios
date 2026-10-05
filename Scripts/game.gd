@@ -39,6 +39,7 @@ func _ready() -> void:
 	_build_classify_buttons()
 	start_round()
 
+#State machine
 func _set_state(new_state: GameState) -> void:
 	state = new_state
 	for s in panels:
@@ -53,27 +54,6 @@ func start_round(): #TODO: handle difficulty scaling
 	_update_score_label()
 	LetterGrid.generate_grid(current_sentence.get_main_answer())
 	_set_state(GameState.ANSWERING)
-
-func calculate_score(answer: String) -> float:
-	print(answer)
-	var is_not_main := answer != current_sentence.get_main_answer()
-	print("Is considered main: " + str(is_not_main))
-	return answer.length() * current_sentence.difficulty * score_mult + (int(is_not_main) * 50)
-
-func _on_word_updated(word: String):
-	WordLabel.text = word
-
-func _on_reset_pressed():
-	LetterGrid.clear_selection()
-
-func _on_next_pressed():
-	if state != GameState.FEEDBACK:
-		return
-	if run_over:
-		score = 0.0
-		score_mult = 1.0
-		run_over = false
-	start_round()
 
 func _on_submit_pressed() -> void:
 	if state != GameState.ANSWERING:
@@ -110,6 +90,13 @@ func _resolve_round(success: bool):
 	_update_score_label()
 	_set_state(GameState.FEEDBACK)
 
+#Score calc
+func calculate_score(answer: String) -> float:
+	print(answer)
+	var is_not_main := answer != current_sentence.get_main_answer()
+	print("Is considered main: " + str(is_not_main))
+	return answer.length() * current_sentence.difficulty * score_mult + (int(is_not_main) * 50)
+
 # Helper functions
 func _build_classify_buttons() -> void:
 	for key in SentenceData.ClauseType.keys():
@@ -133,3 +120,18 @@ func _clause_name(type: int) -> String:
 
 func _update_score_label() -> void:
 	ScoreLabel.text = "Score: %d  (x%.1f)" % [int(score), score_mult]
+
+func _on_word_updated(word: String):
+	WordLabel.text = word
+
+func _on_reset_pressed():
+	LetterGrid.clear_selection()
+
+func _on_next_pressed():
+	if state != GameState.FEEDBACK:
+		return
+	if run_over:
+		score = 0.0
+		score_mult = 1.0
+		run_over = false
+	start_round()
