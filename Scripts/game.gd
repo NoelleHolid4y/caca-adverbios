@@ -26,7 +26,11 @@ var state: GameState = GameState.ANSWERING
 	GameState.FEEDBACK: %FeedbackPanel,
 }
 
-const ROUND_TIME := 45 # (s) TODO: scale with difficulty and round number (probly cap it)
+const MAX_TIME := 45.0 # (s)
+const MIN_TIME := 15.0 # (s)
+const TIME_LOSS_PER_ROUND := 2.0
+const TIME_GAIN_PER_DIFFICULTY := 2.0
+var round_num: int = 0
 var score: float = 0.0
 var score_mult: float = 1.0
 const MULT_STEP: float = 0.5
@@ -66,7 +70,9 @@ func start_round(): #TODO: handle difficulty scaling
 	Sentence.text = current_sentence.sentence
 	_update_score_label()
 	LetterGrid.generate_grid(current_sentence.get_main_answer())
-	RoundTimer.start(ROUND_TIME)
+	var round_time := _compute_round_time(current_sentence)
+	round_num += 1
+	RoundTimer.start(round_time)
 	_set_state(GameState.ANSWERING)
 
 func _on_submit_pressed() -> void:
@@ -108,7 +114,7 @@ func _resolve_round(success: bool):
 func calculate_score(answer: String) -> float:
 	var is_not_main := answer != current_sentence.get_main_answer()
 	var base := answer.length() * current_sentence.difficulty * score_mult + (int(is_not_main) * 50)
-	return base * lerp(0.75, 2.0, _time_fraction())
+	return base * lerpf(0.75, 2.0, _time_fraction())
 
 # Helper functions
 func _build_classify_buttons() -> void:
@@ -143,6 +149,10 @@ func _clause_name(type: int) -> String:
 func _update_score_label() -> void:
 	ScoreLabel.text = "Score: %d  (x%.1f)" % [int(score), score_mult]
 
+func _compute_round_time(sentence: SentenceData) -> float:
+	var base := maxf(MAX_TIME - round_num * TIME_LOSS_PER_ROUND, MIN_TIME)
+	return base + (sentence.difficulty - 1) * TIME_GAIN_PER_DIFFICULTY
+
 func _time_fraction() -> float:
 	return RoundTimer.time_left / RoundTimer.wait_time
 
@@ -156,6 +166,7 @@ func _on_next_pressed():
 	if state != GameState.FEEDBACK:
 		return
 	if run_over:
+		round_num = 0
 		score = 0.0
 		score_mult = 1.0
 		run_over = false
