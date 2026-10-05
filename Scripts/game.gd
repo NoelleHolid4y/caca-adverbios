@@ -2,6 +2,7 @@ extends Control
 
 @onready var LetterGrid: GridContainer = %LetterGrid
 @onready var ClassifyButtons: GridContainer = %ClassifyButtons
+@onready var TimeLeft: Label = %TimeLeft
 @onready var WordLabel: Label = %PlayerWord
 @onready var Sentence: Label = %Sentence
 @onready var ScoreLabel: Label = %Score
@@ -10,6 +11,8 @@ extends Control
 @onready var Submit: Button = %Submit
 @onready var SpaceButton: Button = %Space
 @onready var NextButton: Button = %Next
+@onready var RoundTimer: Timer = %RoundTimer
+@onready var TimeBar: ProgressBar = %TimeBar
 @onready var bank: SentenceBank = preload("res://Data/answer_key.tres")
 @onready var current_sentence: SentenceData
 
@@ -23,6 +26,7 @@ var state: GameState = GameState.ANSWERING
 	GameState.FEEDBACK: %FeedbackPanel,
 }
 
+const ROUND_TIME := 45 # (s) TODO: scale with difficulty and round number (probly cap it)
 var score: float = 0.0
 var score_mult: float = 1.0
 const MULT_STEP: float = 0.5
@@ -36,8 +40,16 @@ func _ready() -> void:
 	Submit.pressed.connect(_on_submit_pressed)
 	SpaceButton.pressed.connect(LetterGrid.add_space)
 	NextButton.pressed.connect(_on_next_pressed)
+	RoundTimer.timeout.connect(_on_round_timeout)
+	TimeBar.max_value = 1.0
+	TimeBar.show_percentage = false
 	_build_classify_buttons()
 	start_round()
+
+func _process(_delta: float) -> void:
+	if not RoundTimer.is_stopped():
+		TimeBar.value = _time_fraction()
+		TimeLeft.text = "Tempo restante: " + str(int(RoundTimer.time_left)) + "s"
 
 #State machine
 func _set_state(new_state: GameState) -> void:
@@ -54,6 +66,7 @@ func start_round(): #TODO: handle difficulty scaling
 	Sentence.text = current_sentence.sentence
 	_update_score_label()
 	LetterGrid.generate_grid(current_sentence.get_main_answer())
+	RoundTimer.start(ROUND_TIME)
 	_set_state(GameState.ANSWERING)
 
 func _on_submit_pressed() -> void:
@@ -74,6 +87,7 @@ func _on_classification_chosen(type: int) -> void:
 	_resolve_round(type == current_sentence.classification)
 
 func _resolve_round(success: bool):
+	RoundTimer.stop()
 	var clause := _clause_name(current_sentence.classification)
 	if chosen_answer == "":  # e.g. timed out before a word was accepted
 		chosen_answer = current_sentence.get_main_answer()
@@ -93,7 +107,8 @@ func _resolve_round(success: bool):
 #Score calc
 func calculate_score(answer: String) -> float:
 	var is_not_main := answer != current_sentence.get_main_answer()
-	return answer.length() * current_sentence.difficulty * score_mult + (int(is_not_main) * 50)
+	var base := answer.length() * current_sentence.difficulty * score_mult + (int(is_not_main) * 50)
+	return base * lerp(0.75, 2.0, _time_fraction())
 
 # Helper functions
 func _build_classify_buttons() -> void:
@@ -128,6 +143,9 @@ func _clause_name(type: int) -> String:
 func _update_score_label() -> void:
 	ScoreLabel.text = "Score: %d  (x%.1f)" % [int(score), score_mult]
 
+func _time_fraction() -> float:
+	return RoundTimer.time_left / RoundTimer.wait_time
+
 func _on_word_updated(word: String):
 	WordLabel.text = word
 
@@ -142,3 +160,8 @@ func _on_next_pressed():
 		score_mult = 1.0
 		run_over = false
 	start_round()
+
+func _on_round_timeout():
+	if state == GameState.FEEDBACK:
+		return
+	_resolve_round(false)
