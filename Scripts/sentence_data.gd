@@ -21,7 +21,7 @@ func is_correct(word: String):
 			return true
 	return false
 
-static func _normalize(word: String):
+static func _normalize(word: String) -> String:
 	const TRANSLATABLE := "ÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÇ"
 	const TRANSLATED := "AAAAAEEEEIIIIOOOOOUUUUC"
 	var result := word.to_upper()
