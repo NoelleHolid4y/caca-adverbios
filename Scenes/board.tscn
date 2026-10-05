@@ -41,42 +41,66 @@ size_flags_vertical = 6
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PlayerWord" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="AnswerPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayerWord" type="Label" parent="MarginContainer/VBoxContainer/AnswerPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/AnswerPanel"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AnswerPanel/CenterContainer"]
 layout_mode = 2
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer/AnswerPanel/CenterContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="LetterGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/AspectRatioContainer"]
+[node name="LetterGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/AnswerPanel/CenterContainer/HBoxContainer/AspectRatioContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("1_tnbny")
 
-[node name="Space" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Space" type="Button" parent="MarginContainer/VBoxContainer/AnswerPanel/CenterContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Space
 "
 
-[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AnswerPanel"]
 layout_mode = 2
 
-[node name="ResetWord" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+[node name="ResetWord" type="Button" parent="MarginContainer/VBoxContainer/AnswerPanel/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Reset"
 
-[node name="Submit" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+[node name="Submit" type="Button" parent="MarginContainer/VBoxContainer/AnswerPanel/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Submit"
+
+[node name="ClassifyPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ClassifyButtons" type="GridContainer" parent="MarginContainer/VBoxContainer/ClassifyPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FeedbackPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FeedbackLabel" type="Label" parent="MarginContainer/VBoxContainer/FeedbackPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Next" type="Button" parent="MarginContainer/VBoxContainer/FeedbackPanel"]
+unique_name_in_owner = true
+layout_mode = 2
