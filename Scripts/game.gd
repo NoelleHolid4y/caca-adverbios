@@ -38,6 +38,9 @@ var pending_points: float = 0.0 # so we can apply multipliers AFTER classificati
 var chosen_answer: String = ""
 var run_over: bool = false
 
+var shake_tween: Tween
+var word_base_pos: Vector2
+
 func _ready() -> void:
 	LetterGrid.word_updated.connect(_on_word_updated)
 	Reset.pressed.connect(_on_reset_pressed)
@@ -80,7 +83,8 @@ func _on_submit_pressed() -> void:
 		return
 	var word: String = LetterGrid.get_current_word_clean()
 	if not current_sentence.is_correct(word):
-		print("Wrong answer!") # ending round only after timeout
+		WordLabel.add_theme_color_override("font_color", Color.RED)
+		_shake_word_label()
 		return
 	chosen_answer = _denormalize_answer(word) 
 	pending_points = calculate_score(chosen_answer)
@@ -133,6 +137,24 @@ func _focus_for_state(s: GameState):
 		GameState.FEEDBACK:
 			NextButton.grab_focus()
 
+func _shake_word_label(duration: float = 1.0, strength: float = 8.0) -> void:
+	# If already shaking, stop and restore
+	if shake_tween and shake_tween.is_running():
+		shake_tween.kill()
+		WordLabel.position = word_base_pos
+	word_base_pos = WordLabel.position
+	shake_tween = create_tween()
+	shake_tween.tween_method(_apply_shake.bind(strength), 0.0, 1.0, duration)
+	shake_tween.finished.connect(_end_shake)
+
+func _apply_shake(duration: float, strength: float) -> void:
+	var amplitude := strength * (1.0 - duration) # fades out over time
+	var offset := Vector2(randf_range(-1.0, 1.0), randf_range(-0.3, 0.3)) * amplitude
+	WordLabel.position = word_base_pos + offset
+
+func _end_shake() -> void:
+	WordLabel.position = word_base_pos
+
 func _denormalize_answer(word: String) -> String:
 	var n := SentenceData._normalize(word)
 	for a in current_sentence.answers:
@@ -157,6 +179,7 @@ func _time_fraction() -> float:
 	return RoundTimer.time_left / RoundTimer.wait_time
 
 func _on_word_updated(word: String):
+	WordLabel.remove_theme_color_override("font_color")
 	WordLabel.text = word
 
 func _on_reset_pressed():
