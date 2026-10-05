@@ -64,7 +64,6 @@ func _on_submit_pressed() -> void:
 		print("Wrong answer!") # ending round only after timeout
 		return
 	chosen_answer = _denormalize_answer(word) 
-	print(chosen_answer)
 	pending_points = calculate_score(chosen_answer)
 	Sentence.text = _fill_blank(current_sentence.sentence, chosen_answer)
 	_set_state(GameState.CLASSIFYING)
@@ -93,9 +92,7 @@ func _resolve_round(success: bool):
 
 #Score calc
 func calculate_score(answer: String) -> float:
-	print(answer)
 	var is_not_main := answer != current_sentence.get_main_answer()
-	print("Is considered main: " + str(is_not_main))
 	return answer.length() * current_sentence.difficulty * score_mult + (int(is_not_main) * 50)
 
 # Helper functions
