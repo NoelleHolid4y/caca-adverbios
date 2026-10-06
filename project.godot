@@ -10,7 +10,20 @@ config_version=5
 
 [application]
 
-config/name="grammar-roguelike"
+config/name="caça-advérbios"
+config/description="Esse jogo foi feito para um trabalho escolar de gramática.
+
+- PREMISSA:
+
+  Corretamente complete e classifique orações subordinadas para conseguir altas pontuações e multiplicar seus pontos!
+
+- COMO JOGAR:
+
+  Use a grade de letras central para formar palavras que completem a frase. Classifique corretamente a frase para ganhar ainda mais pontos.
+
+  Quanto mais longa a sua resposta, maior sua pontuação!
+
+  Jogável com mouse ou teclado."
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
